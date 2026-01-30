@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery Task Optimizer</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; }
+        .status-box { background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; margin-bottom: 20px; border-radius: 5px; font-size: 0.9em; color: #856404; }
+        .btn { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn:hover { background: #219150; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Delivery Optimizer</h1>
+    
+    <div class="status-box">
+        <strong>Warning:</strong> The Brute-Force test is limited to 20 tasks to prevent your browser from freezing. The Greedy test handles 10,000+ tasks instantly. Open the <strong>Console</strong> to see the benchmark results.
+    </div>
+
+    <button class="btn" onclick="runOptimizationTest()">Run Performance Benchmark</button>
+</div>
+
+<script src="delivery.js"></script>
+</body>
+</html>
