@@ -1,0 +1,2 @@
+# 🔌 Office Cable Optimizer
+This tool uses Prim's Algorithm with a Binary Min-Heap to solve the Minimum Spanning Tree problem. It ensures all computers are connected to the network using the shortest total cable length, preventing redundant loops and reducing infrastructure costs.

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Structure & Network Lab</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background: #1a1a1a; color: #fff; }
+        .container { max-width: 800px; margin: auto; }
+        .card { background: #2d2d2d; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #007bff; }
+        .log-window { background: #000; color: #0f0; padding: 15px; font-family: 'Courier New', Courier, monospace; border-radius: 5px; height: 300px; overflow-y: auto; border: 1px solid #444; }
+        button { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px; }
+        button:hover { background: #218838; }
+        input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: #333; color: white; margin-bottom: 10px; width: 200px; }
+        h2 { color: #007bff; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Data Structure Performance Lab</h1>
+    
+    <div class="card">
+        <h2>1. Queue Comparison</h2>
+        <p>Testing <strong>Array-based (Fixed)</strong> vs <strong>Linked List (Dynamic)</strong>.</p>
+        <button onclick="runQueueTest()">Run Queue Test</button>
+    </div>
+
+    <div class="card">
+        <h2>2. Priority Queue (Min-Heap)</h2>
+        <p>Testing <strong>Min-Heap</strong> bubble-up/down logic.</p>
+        <button onclick="runHeapTest()">Run Heap Test</button>
+    </div>
+
+    <div class="card">
+        <h2>3. Office Cable Optimizer (MST)</h2>
+        <p>Enter connection: <code>ComputerA, ComputerB, Cost</code></p>
+        <input type="text" id="edgeInput" placeholder="e.g. A, B, 10">
+        <br>
+        <button onclick="addOfficeEdge()">Add Connection</button>
+        <button onclick="calculateLayout()" style="background:#dc3545">Compute Layout</button>
+    </div>
+
+    <h3>Output Terminal</h3>
+    <div id="terminal" class="log-window">
+        > System ready. Waiting for input...<br>
+    </div>
+</div>
+
+<script src="queue_structures.js"></script>
+<script src="priority_queues.js"></script>
+<script src="office_network.js"></script>
+
+<script>
+    const term = document.getElementById('terminal');
+    function log(msg) { 
+        term.innerHTML += `> ${msg}<br>`; 
+        term.scrollTop = term.scrollHeight; 
+    }
+
+    // --- Basic Data Structure Tests ---
+    function runQueueTest() {
+        log("Testing ArrayQueue (Size 3)...");
+        const aq = new ArrayQueue(3);
+        aq.enqueue("S23 Ultra");
+        aq.enqueue("S21 Ultra");
+        log("Enqueued: S23 and S21");
+        log("Dequeued: " + aq.dequeue());
+        
+        log("Testing LinkedListQueue...");
+        const lq = new LinkedListQueue();
+        lq.enqueue("Task A");
+        log("Peeked: " + lq.peek());
+    }
+
+    function runHeapTest() {
+        log("Building Min-Heap...");
+        const hpq = new MinHeapPQ();
+        hpq.insert(50);
+        hpq.insert(10);
+        hpq.insert(30);
+        log("Extracted Min: " + hpq.extractMin() + " (Expected: 10)");
+        log("Extracted Min: " + hpq.extractMin() + " (Expected: 30)");
+    }
+
+    // --- Office Network Logic ---
+    const network = new PrimMST(0); 
+    const computers = new Set();
+
+    function addOfficeEdge() {
+        const val = document.getElementById('edgeInput').value;
+        const input = val.split(',');
+        if(input.length !== 3) return alert("Please use the format: ComputerA, ComputerB, Cost");
+        
+        const u = input[0].trim();
+        const v = input[1].trim();
+        const cost = parseInt(input[2].trim());
+        
+        if (isNaN(cost)) return alert("Cost must be a number!");
+
+        computers.add(u);
+        computers.add(v);
+        network.numComputers = computers.size;
+        network.addConnection(u, v, cost);
+        
+        log(`Added: ${u} to ${v} with cost ${cost}`);
+        document.getElementById('edgeInput').value = ""; // Clear input
+    }
+
+    function calculateLayout() {
+        if(computers.size === 0) {
+            log("Error: Add some connections first!");
+            return;
+        }
+        
+        log("Calculating Minimum Spanning Tree...");
+        const startNode = Array.from(computers)[0];
+        const result = network.computeMST(startNode);
+        
+        log("<strong>Optimal Cable Layout:</strong>");
+        result.connections.forEach(e => {
+            log(`${e.from} <-> ${e.to} (Cost: ${e.cost})`);
+        });
+        log(`<strong>Total MST Cost: ${result.totalCost}</strong>`);
+    }
+</script>
+
+</body>
+</html>
