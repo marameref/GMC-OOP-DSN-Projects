@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queue & Heap Benchmark</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background: #1a1a1a; color: #fff; }
+        .container { max-width: 800px; margin: auto; }
+        .card { background: #2d2d2d; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #007bff; }
+        .log-window { background: #000; color: #0f0; padding: 15px; font-family: 'Courier New', Courier, monospace; border-radius: 5px; height: 300px; overflow-y: auto; border: 1px solid #444; }
+        button { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #218838; }
+        h2 { color: #007bff; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Data Structure Performance Lab</h1>
+    
+    <div class="card">
+        <h2>Queue Comparison</h2>
+        <p>Testing <strong>Array-based (Fixed)</strong> vs <strong>Linked List (Dynamic)</strong>.</p>
+        <button onclick="runQueueTest()">Run Queue Test</button>
+    </div>
+
+    <div class="card">
+        <h2>Priority Queue (Min-Heap)</h2>
+        <p>Testing <strong>Min-Heap</strong> bubble-up/down logic with random priorities.</p>
+        <button onclick="runHeapTest()">Run Heap Test</button>
+    </div>
+
+    <h3>Output Terminal</h3>
+    <div id="terminal" class="log-window">
+        > Ready to test...<br>
+    </div>
+</div>
+
+<script src="queue_structures.js"></script>
+<script src="priority_queues.js"></script>
+
+<script>
+    const term = document.getElementById('terminal');
+    function log(msg) { term.innerHTML += `> ${msg}<br>`; term.scrollTop = term.scrollHeight; }
+
+    function runQueueTest() {
+        log("Initializing ArrayQueue (Size 3)...");
+        const aq = new ArrayQueue(3);
+        aq.enqueue("S23 Ultra");
+        aq.enqueue("S21 Ultra");
+        log("Enqueued: S23 and S21");
+        log("Dequeued: " + aq.dequeue());
+        
+        log("Initializing LinkedListQueue...");
+        const lq = new LinkedListQueue();
+        lq.enqueue("Task A");
+        log("Peeked: " + lq.peek());
+    }
+
+    function runHeapTest() {
+        log("Building Min-Heap...");
+        const hpq = new MinHeapPQ();
+        hpq.insert(50);
+        hpq.insert(10);
+        hpq.insert(30);
+        log("Extracted Min: " + hpq.extractMin() + " (Expected: 10)");
+        log("Extracted Min: " + hpq.extractMin() + " (Expected: 30)");
+    }
+</script>
+</body>
+</html>
