@@ -143,7 +143,7 @@ To meet the "Description" requirements, your report should include:
 
 ### ## 🚀 Testing the Refactor (`index.js`)
 
-Run this on your Mac to see it all work:
+Run this to see it all work:
 
 ```javascript
 import { ProductBuilder } from './src/models/Product.js';
