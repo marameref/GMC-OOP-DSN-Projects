@@ -1,10 +1,10 @@
-## ## Project README: Weather Application Checkpoint
+## Project README: Weather Application Checkpoint
 
 This project is a functional, responsive Weather Application that leverages asynchronous JavaScript to fetch and display real-time weather data. It serves as a comprehensive demonstration of API integration, DOM manipulation, and modern CSS styling.
 
 ---
 
-### ## Project Structure
+### Project Structure
 
 To maintain a clean and professional development environment, the project is organized into modular files:
 
@@ -19,7 +19,7 @@ weather-app/
 
 ---
 
-### ## Core Functionality
+### Core Functionality
 
 #### **1. Asynchronous Data Retrieval**
 
@@ -43,7 +43,7 @@ A robust `try...catch` block is implemented to handle common edge cases, such as
 
 ---
 
-### ## Technical Specifications
+### Technical Specifications
 
 * **Frontend:** HTML5, CSS3 (Flexbox/Grid for responsiveness).
 * **Scripting:** JavaScript ES6+ (Async/Await, Arrow Functions, Template Literals).
@@ -51,7 +51,7 @@ A robust `try...catch` block is implemented to handle common edge cases, such as
 
 ---
 
-### ## Setup Instructions
+### Setup Instructions
 
 1. **Obtain an API Key:** Sign up at [OpenWeatherMap](https://openweathermap.org/) and generate a free API key.
 2. **Configure Script:** Open `script.js` and replace `'YOUR_API_KEY_HERE'` with your actual key.
@@ -59,7 +59,7 @@ A robust `try...catch` block is implemented to handle common edge cases, such as
 
 ---
 
-### ## Developer Information
+### Developer Information
 
 **Author:** Engr. Amarachi Omereife
 
